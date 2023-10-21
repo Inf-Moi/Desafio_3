@@ -205,7 +205,7 @@ INNER JOIN Clientes c ON r.DUI = c.DUI
 WHERE c.Nombres = 'Pedro Arias' AND c.Apellidos = 'Rivas Cisneros';
 
 --Investigacion de lo Joins
---¿Que es ? : 
+--¿Que es ? : Devuelve los registros que tienen valores coincidentes en ambas tablas.
 --Muestre la categoría y el nombre de la película 
 --Con Join
 SELECT categoria.Categorias, peliculas.Nombre
