@@ -64,7 +64,6 @@ CREATE TABLE rentas (
 
 -- Incertar datos en las tablas
 
--- Insertar varios registros en la tabla 'clientes'
 INSERT INTO clientes (DUI, Nombres, Apellidos, Fecha_de_Afiliacion, Edad)
 VALUES 
 (00224432-3, 'Miguel Armando', 'Cardoza Sosa', '2008-04-21', 17),
