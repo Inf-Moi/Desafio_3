@@ -2,7 +2,7 @@
 --Creacion de base de datos, desarrollo de los puntos del desafio
 --Recordar ir ejecutando por partes
 --Drop Database [Rentavideo], "Por si ya la tienen, pa eliminar".
-REATE DATABASE [RentaVideo]
+CREATE DATABASE [RentaVideo]
 ON PRIMARY 
 ( 
     NAME = N'RentaVideo', 
@@ -25,36 +25,36 @@ LOG ON
 --Creacion de Tablas
 
 CREATE TABLE clientes (
-    DUI INT PRIMARY KEY,
-    Nombres VARCHAR(255),
-    Apellidos VARCHAR(255),
+    DUI VARCHAR(10) PRIMARY KEY,
+    Nombres VARCHAR(50),
+    Apellidos VARCHAR(50),
     Fecha_de_Afiliacion DATE,
     Edad INT
 );
 
 CREATE TABLE tipos (
-    Codigo INT PRIMARY KEY,
-    Nombre_Tipo VARCHAR(255) CHECK (Nombre_Tipo IN ('DVD', 'VHS', 'CASSETTE'))
+    Codigo VARCHAR(4) PRIMARY KEY,
+    Nombre_Tipo VARCHAR(25) CHECK (Nombre_Tipo IN ('DVD', 'VHS', 'CASSETTE'))
 );
 
 CREATE TABLE categoria (
-    Codigo_Categoria INT PRIMARY KEY,
-    Categorias VARCHAR(255)
+    Codigo_Categoria VARCHAR(4) PRIMARY KEY,
+    Categorias VARCHAR(50)
 );
 
 CREATE TABLE peliculas (
-    Codigo INT PRIMARY KEY,
-    Nombre VARCHAR(255),
-    Codigo_Tipo INT,
-    Codigo_Categoria INT,
+    Codigo VARCHAR(4) PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Codigo_Tipo VARCHAR(4),
+    Codigo_Categoria VARCHAR(4),
     Fecha_de_Ingreso DATE,
     FOREIGN KEY (Codigo_Tipo) REFERENCES tipos(Codigo),
     FOREIGN KEY (Codigo_Categoria) REFERENCES categoria(Codigo_Categoria)
 );
 
 CREATE TABLE rentas (
-    Codigo INT PRIMARY KEY,
-    DUI INT,
+    Codigo VARCHAR(4) PRIMARY KEY,
+    DUI VARCHAR(10),
     Fecha_de_Prestamo DATE,
     Fecha_de_Devolucion DATE,
     Cobro DECIMAL(10, 2),
@@ -68,19 +68,30 @@ INSERT INTO clientes (DUI, Nombres, Apellidos, Fecha_de_Afiliacion, Edad)
 VALUES 
 (00224432-3, 'Miguel Armando', 'Cardoza Sosa', '2008-04-21', 17),
 (00278283-2, 'Maria Elena', 'Sanchez Campos', '2008-04-24', 24),
-(00455594-0, 'Carlos', 'Alfaro', '2022-11-05', 30);
+(00455594-0, 'Carlos', 'Alfaro', '2022-11-05', 30),
+(00900082-9, 'Jorge Ernesto','Manzanero Vasquez', '2008-08-06',28),
+(00901133-2, 'Jose Antonio', 'Juarez Blanco', '2008-04-08', 19),
+(01433949-8, 'Herson', 'Serrano', '2007-06-14', 29),
+(01503949-2, 'Raul Ernesto', 'Barraza Sorto', '2008-06-14', 29),
+(01850173-9, 'Juan Jose', 'Recinos Ayala', '2008-03-14', 28),
+(01900683-1, 'Pedro Arias', 'Rivas Ayala', '2008-05-22', 26),
+(02829380-9, 'Ana Epifania', 'Lopez Durango', '2008-07-15', 24);
 
-INSERT INTO clientes (DUI, Nombres, Apellidos, Fecha_de_Afiliacion, Edad)
+INSERT INTO tipos(Codigo, Nombre_Tipo)
 VALUES
+('T001', 'DVD'),
+('T002', 'VHS'),
+('T003', 'CASSETE');
 
-INSERT INTO tipo (DUI, Nombre_Tipo)
+INSERT INTO categoria (Codigo_Categoria, Categorias)
 VALUES
-
-INSERT INTO categoria (Codigo_Categoria, categoria)
-VALUES
-
-INSERT INTO peliculas (Codigo, Nombre, Codigo_Tipo, Codigo_Categoria, Fecha_de_Ingreso)
-VALUES
-
-INSERT INTO rentas (Codigo, DUI, Fecha_de_Prestamo, Fecha_de_Devolucion, Cobro, Mora)
-VALUES
+('C001', 'Comedia'),
+('C002', 'Infantiles'),
+('C003', 'Suspenso'),
+('C004', 'Drama'),
+('C005', 'Accion'),
+('C006', 'Juegos'),
+('C007', 'Sonidos'),
+('C008', 'Romance'),
+('C009', 'Terror'),
+('C010' , 'Anime');
