@@ -1,0 +1,44 @@
+SELECT 
+Nombres
+FROM clientes 
+WHERE Edad > 25
+ORDER BY Edad DESC;
+
+SELECT Nombres
+FROM clientes
+WHERE Edad BETWEEN 18 AND 26;
+
+SELECT *
+FROM categoria
+WHERE Categorias NOT IN ('Suspenso', 'Drama');
+
+SELECT 
+clientes.Nombres,
+rentas.mora 
+FROM clientes INNER JOIN rentas ON clientes.DUI = rentas.DUI
+WHERE rentas.mora > 0;
+
+SELECT Nombres, Fecha_Ingreso
+FROM clientes
+WHERE Fecha_Ingreso BETWEEN '2008-04-01' AND '2008-06-30';
+
+SELECT TOP 3 Nombre
+FROM peliculas
+ORDER BY Disponible DESC;
+
+UPDATE categoria
+SET Categorias = 'Games'
+WHERE Categorias = 'Juegos';
+
+UPDATE peliculas
+SET Fecha_Ingreso = '13-04-2022', Disponible = 10
+WHERE Nombre = 'Ace Ventura';
+
+SELECT Nombre
+FROM peliculas
+WHERE Nombre LIKE 'A%';
+
+DELETE r
+FROM Rentas r
+INNER JOIN Clientes c ON r.DUI = c.DUI
+WHERE c.Nombres = 'Pedro Arias' AND c.Apellidos = 'Rivas Cisneros';
