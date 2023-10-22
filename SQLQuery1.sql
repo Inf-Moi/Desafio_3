@@ -1,7 +1,7 @@
 --Desafio 3
---Creacion de base de datos, desarrollo de los puntos del desafio
---Recordar ir ejecutando por partes
---Drop Database [Rentavideo], "Por si ya la tienen, pa eliminar".
+--Creacion de base de datos, desarrollo de los puntos del desafio.
+--Recordar ir ejecutando por partes.
+--Parte 1 ejecucion 1 
 Drop Database [Rentavideo], --"Por si ya la tienen, pa eliminar".
 CREATE DATABASE [RentaVideo]
 ON PRIMARY 
@@ -82,8 +82,8 @@ VALUES
 ('01900683-1', 'Pedro Arias', 'Rivas Ayala', '2008-05-22', 26),
 ('02829380-9', 'Ana Epifania', 'Lopez Durango', '2008-07-15', 24);
 
-DROP TABLE clientes;
-Delete from clientes
+--DROP TABLE clientes;
+--Delete from clientes
 Select *from clientes
 
 INSERT INTO tipos(Codigo, Nombre_Tipo)
@@ -147,20 +147,19 @@ VALUES
 Select *From clientes
 
 --Consultas 
---Mostrar el nombre de los clientes que tengan mÃ¡s de 25 aÃ±os, ordenar descendente segÃºn la edad. 
+--Mostrar el nombre de los clientes que tengan más de 25 años, ordenar descendente según la edad. 
 SELECT 
 Nombres, Edad
 FROM clientes 
 WHERE Edad > 25
 ORDER BY Edad DESC;
 
---Mostrar el nombre de los clientes que tengan entre 18 y 26 aÃ±os
+--Mostrar el nombre de los clientes que tengan entre 18 y 26 años
 SELECT Nombres, Edad
 FROM clientes
 WHERE Edad BETWEEN 18 AND 26;
 
---Muestre todas las categorÃ­as de la tabla categorÃ­a, pero no debe mostrar Suspenso ni Drama
-SELECT Categorias
+--Muestre todas las categorías de la tabla categoría, pero no debe mostrar Suspenso ni DramaSELECT Categorias
 FROM categoria
 WHERE Categorias NOT IN ('Suspenso', 'Drama');
 
@@ -171,48 +170,58 @@ rentas.mora
 FROM clientes INNER JOIN rentas ON clientes.DUI = rentas.DUI
 WHERE rentas.mora > 0
 
---Mostrar los clientes y las fechas en que se han afiliado entre abril y junio del aÃ±o 2008
+--Mostrar los clientes y las fechas en que se han afiliado entre abril y junio del año 2008
 SELECT Nombres, Fecha_de_Afiliacion
 FROM clientes
 WHERE Fecha_de_Afiliacion BETWEEN '2008-04-01' AND '2008-06-30';
 
---Mostrar el top 3 de pelÃ­culas que tienen mas existencias disponibles en el renta video
+--Mostrar el top 3 de películas que tienen mas existencias disponibles en el renta video
 SELECT TOP 3 Nombre, Disponible AS Peliculas_disponibles
 FROM peliculas
 ORDER BY Disponible DESC;
 
 --Siguientes Modificaciones (Ejecutar hasta video)
---Modifique la categorÃ­a Juegos por Games 
+--Modifique la categoría Juegos por Games 
 UPDATE categoria
 SET Categorias = 'Games'
 WHERE Categorias = 'Juegos';
 
---Modifique la fecha de ingreso a 13 de abril 2022 y la cantidad disponible a 10 de la pelÃ­cula de 
+Select *from categoria
+
+--Modifique la fecha de ingreso a 13 de abril 2022 y la cantidad disponible a 10 de la película de 
 --ACE Ventura(en una sola consulta) 
 UPDATE peliculas
-SET Fecha_Ingreso = '13-04-2022', Disponible = 10
+SET Fecha_de_Ingreso = '13-04-2022', Disponible = 10
 WHERE Nombre = 'Ace Ventura';
 
---Muestre los nombres de las pelÃ­culas que comiencen con la letra A 
+SELECT * FROM peliculas WHERE Nombre = 'Ace Ventura';
+
+--Muestre los nombres de las películas que comiencen con la letra A 
 SELECT Nombre
 FROM peliculas
 WHERE Nombre LIKE 'A%';
 
---Elimine las rentas que realizÃ³ Pedro Arias Rivas Cisneros
+--Elimine las rentas que realizó Pedro Arias Rivas Cisneros
 DELETE r
 FROM Rentas r
 INNER JOIN Clientes c ON r.DUI = c.DUI
 WHERE c.Nombres = 'Pedro Arias' AND c.Apellidos = 'Rivas Cisneros';
+--Consulta de la eliminacion de la renta
+SELECT r.*
+FROM Rentas r
+INNER JOIN Clientes c ON r.DUI = c.DUI
+WHERE c.Nombres = 'Pedro Arias' AND c.Apellidos = 'Rivas Cisneros';
+
 
 --Investigacion de lo Joins
---Â¿Que es ? : Devuelve los registros que tienen valores coincidentes en ambas tablas.
---Muestre la categorÃ­a y el nombre de la pelÃ­cula 
+--¿Que es ? : Devuelve los registros que tienen valores coincidentes en ambas tablas.
+--Muestre la categoría y el nombre de la película 
 --Con Join
 SELECT categoria.Categorias, peliculas.Nombre
 FROM peliculas
 JOIN categoria ON peliculas.Codigo_Categoria = categoria.Codigo_Categoria;
 
---Muestre la categorÃ­a, el tipo y el nombre de la pelÃ­cula 
+--Muestre la categoría, el tipo y el nombre de la película 
 
 --Con Join
 SELECT categoria.Categorias, tipos.Nombre_Tipo, peliculas.Nombre
